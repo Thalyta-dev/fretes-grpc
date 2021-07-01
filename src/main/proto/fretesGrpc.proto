@@ -9,10 +9,20 @@ package br.com.zup;
 
 service FretesGrpcService {
   rpc send (FretesGrpcRequest) returns (FretesGrpcReply) {}
+
+  rpc calculaFrete(CalculaFreteRequest) returns (CalculaFreteResponse){}
+}
+message CalculaFreteRequest {
+  string cep = 1;
 }
 
 message FretesGrpcRequest {
   string name = 1;
+}
+
+message CalculaFreteResponse {
+  string cep = 1;
+  double valor = 2;
 }
 
 message FretesGrpcReply {
