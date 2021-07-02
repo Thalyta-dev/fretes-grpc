@@ -8,17 +8,18 @@ plugins {
 }
 
 version = "0.1"
-group = "br.com.zup"
+group = "br.com.frete"
 
 repositories {
     mavenCentral()
 }
 
 micronaut {
+    runtime ("netty")
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("br.com.zup.*")
+        annotations("br.com.frete.*")
     }
 }
 
@@ -31,16 +32,14 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-    testImplementation("io.micronaut:micronaut-http-client")
-
+    implementation("io.micronaut:micronaut-management")
+    compile("io.micronaut:micronaut-http-server-netty") //faltava
 }
 
 
 application {
-    mainClass.set("br.com.zup.ApplicationKt")
+    mainClass.set("br.com.frete.ApplicationKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
